@@ -13,7 +13,7 @@ This framework automates test cases for a sample **E-commerce web application** 
 ✔ Page Object Model (POM)
 ✔ Modular test structure
 ✔ Reusable automation utilities
-✔ Clean and maintainable code
+✔ Clean and maintainable code.
 
 ---
 
