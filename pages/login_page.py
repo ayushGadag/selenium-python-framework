@@ -1,18 +1,17 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-class LoginPage:
+from pages.base_page import BasePage
 
 
-    def __init__(self,driver):
-        self.driver = driver
+class LoginPage(BasePage):
 
     username = (By.ID, "user-name")
     password = (By.ID, "password")
-    login_button =(By.ID ,"login-button")
+    login_button = (By.ID, "login-button")
+
+    def __init__(self, driver):
+        super().__init__(driver)
 
     def login(self, user, pwd):
-         wait = WebDriverWait(self.driver,10)
-         self.driver.find_element(*self.username).send_keys(user)
-         self.driver.find_element(*self.password).send_keys(pwd)
-         self.driver.find_element(*self.login_button).click()
+        self.enter_text(self.username, user)
+        self.enter_text(self.password, pwd)
+        self.click(self.login_button)
