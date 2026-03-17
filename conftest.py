@@ -5,10 +5,12 @@ import os
 
 
 @pytest.fixture
-def driver():
-    driver = get_driver()
-    yield driver
-    driver.quit()
+@pytest.fixture
+def logged_in_user(driver):
+    driver.get("https://www.saucedemo.com")
+    login = LoginPage(driver)
+    login.login("standard_user", "secret_sauce")
+    return driver
 
 
 @pytest.hookimpl(hookwrapper=True)
