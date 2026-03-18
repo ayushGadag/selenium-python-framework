@@ -3,6 +3,7 @@ from utils.driver_factory import get_driver
 from pages.login_page import LoginPage
 from datetime import datetime
 import os
+import allure
 
 
 # ---------- DRIVER FIXTURE ----------
@@ -22,7 +23,7 @@ def logged_in_user(driver):
     return driver
 
 
-# ---------- SCREENSHOT ON FAILURE ----------
+# ---------- SCREENSHOT + ALLURE ATTACHMENT ----------
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item):
     outcome = yield
@@ -36,8 +37,17 @@ def pytest_runtest_makereport(item):
         os.makedirs("screenshots", exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        screenshot_name = f"screenshots/failure_{timestamp}.png"
+        screenshot_path = f"screenshots/failure_{timestamp}.png"
 
-        driver.save_screenshot(screenshot_name)
+        # Save screenshot
+        driver.save_screenshot(screenshot_path)
 
-        print(f"Screenshot saved: {screenshot_name}")
+        # 🔥 Attach screenshot to Allure report
+        with open(screenshot_path, "rb") as image_file:
+            allure.attach(
+                image_file.read(),
+                name="Failure Screenshot",
+                attachment_type=allure.attachment_type.PNG
+            )
+
+        print(f"Screenshot saved: {screenshot_path}")
