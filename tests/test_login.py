@@ -1,10 +1,23 @@
-from pages.login_page import LoginPage
+from utils.logger import get_logger
+from pages.product_page import ProductPage
+from pages.cart_page import CartPage
 
-def test_valid_login(driver):
+logger = get_logger()
 
-    driver.get("https://www.saucedemo.com")
+def test_add_to_cart(logged_in_user):
 
-    login = LoginPage(driver)
-    login.login("standard_user", "secret_sauce")
+    driver = logged_in_user
 
-    assert "inventory" in driver.current_url
+    logger.info("Starting add to cart test")
+
+    product = ProductPage(driver)
+    product.add_product_to_cart()
+    logger.info("Product added to cart")
+
+    product.open_cart()
+
+    cart = CartPage(driver)
+
+    assert "Sauce Labs Backpack" in cart.is_product_in_cart()
+
+    logger.info("Test completed successfully")
