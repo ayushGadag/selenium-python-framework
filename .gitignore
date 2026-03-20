@@ -1,6 +1,17 @@
+# Python cache
 __pycache__/
 *.pyc
+
+# Logs and reports
 logs/
 reports/
-screenshots/
 allure-report/
+
+# Ignore all screenshots
+screenshots/*
+
+# Allow only selected screenshots for README
+!screenshots/login-page.png
+!screenshots/product-page.png
+!screenshots/allure-report.png
+!screenshots/failure-example.png
