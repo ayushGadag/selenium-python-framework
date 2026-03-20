@@ -1,5 +1,13 @@
 # 🚀 Selenium Python Automation Framework
 
+<!-- 🔥 Preview Images for GitHub Cards -->
+
+![Login](screenshots/login-page.png)
+![Product](screenshots/product-page.png)
+![Allure](screenshots/allure-report.png)
+
+---
+
 <p align="center">
   <img src="screenshots/allure-report.png" width="800"/>
 </p>
