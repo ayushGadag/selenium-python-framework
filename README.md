@@ -2,9 +2,9 @@
 
 <!-- 🔥 Preview Images for GitHub Cards -->
 
-![Login](screenshots/login-page.png)
+<!-- ![Login](screenshots/login-page.png)
 ![Product](screenshots/product-page.png)
-![Allure](screenshots/allure-report.png)
+![Allure](screenshots/allure-report.png) -->
 
 ---
 
